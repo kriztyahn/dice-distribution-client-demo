@@ -1,0 +1,36 @@
+.form-container {
+  margin-top: 2%;
+  margin-left: 5%;
+}
+
+.container {
+  height: auto;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+}
+
+.left-margin {
+  margin-left: 10px;
+}
+
+.right-margin {
+  margin-right: 10px;
+}
+
+.top-margin {
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 15px;
+}
+
+th {
+  text-align: center;
+}

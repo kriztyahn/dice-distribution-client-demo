@@ -1,0 +1,94 @@
+<div class="form-container">
+  <label>Number of Rolls: </label>
+  <input matInput class="left-margin right-margin" [(ngModel)]="rollCount" [ngModelOptions]="{standalone: true}">
+
+  <label>Number of Dice: </label>
+  <input matInput class="left-margin right-margin" [(ngModel)]="diceCount" [ngModelOptions]="{standalone: true}">
+
+  <label>Number of Dice Sides: </label>
+  <select matNativeControl required class="right-margin" [(ngModel)]="sideCount" [ngModelOptions]="{standalone: true}">
+    <option *ngFor="let side of sides" [value]="side">
+      {{side}}
+    </option>
+  </select>
+
+  <button mat-button (click)="simulate(rollCount, diceCount, sideCount)">Simulate</button>
+</div>
+
+<div class="container">
+  <mat-tab-group>
+    <mat-tab label="Current">
+      <div class="container">
+        <table>
+          <thead>
+            <th>Roll Result</th>
+            <th>Number of Occurrence</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of rollResultRowMap | keyvalue">
+              <td>{{row.key}}</td>
+              <td>{{row.value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Simulation Distribution">
+      <div class="top-margin">
+        <label>Number of Dice: </label>
+        <input matInput class="left-margin right-margin" [(ngModel)]="diceCountDistribution" [ngModelOptions]="{standalone: true}">
+
+        <label>Number of Dice Sides: </label>
+        <select matNativeControl required class="right-margin" [(ngModel)]="sideCountDistribution" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let side of sides" [value]="side">
+            {{side}}
+          </option>
+        </select>
+
+        <button mat-button (click)="getDistribution(diceCountDistribution, sideCountDistribution)">Show</button>
+      </div>
+      <div class="container">
+        <table>
+          <thead>
+          <th>Dice Count</th>
+          <th>Number of Dice Side</th>
+          <th>Roll Result</th>
+          <th>Number of Occurrence</th>
+          <th>Total Number of Rolls</th>
+          <th>Distribution</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of rollDistributionList">
+            <td>{{row.dice_count}}</td>
+            <td>{{row.side_count}}</td>
+            <td>{{row.roll_sum}}</td>
+            <td>{{row.roll_sum_count}}</td>
+            <td>{{row.total_roll_count}}</td>
+            <td>{{row.distribution}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Simulation History">
+      <div class="container">
+        <table>
+          <thead>
+          <th>Dice Count</th>
+          <th>Number of Dice Side</th>
+          <th>Total Number of Rolls</th>
+          <th>Number of Simulations</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of simulationList">
+            <td>{{row.dice_count}}</td>
+            <td>{{row.side_count}}</td>
+            <td>{{row.total_roll_count}}</td>
+            <td>{{row.simulation_count}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
